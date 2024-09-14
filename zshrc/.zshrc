@@ -6,21 +6,12 @@ autoload bashcompinit && bashcompinit
 autoload -Uz compinit
 compinit
 
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^w' autosuggest-execute
 bindkey '^e' autosuggest-accept
 bindkey '^u' autosuggest-toggle
 bindkey '^L' vi-forward-word
 bindkey '^k' up-line-or-search
 bindkey '^j' down-line-or-search
-
-eval "$(starship init zsh)"
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
-
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
-export EDITOR=/opt/homebrew/bin/nvim
 
 alias la=tree
 alias cat=bat
@@ -103,6 +94,16 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH=/opt/homebrew/bin:$PATH
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+eval "$(starship init zsh)"
+
+# You may need to manually set your language environment
+export LANG=en_US.UTF-8
+
+export EDITOR=/opt/homebrew/bin/nvim
+
 
 # navigation
 cx() { cd "$@" && l; }
@@ -113,4 +114,3 @@ fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
 eval "$(direnv hook zsh)"
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
