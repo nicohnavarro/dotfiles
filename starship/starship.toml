@@ -1,5 +1,5 @@
 format = """
-$directory\
+🔥 $directory\
 $git_branch\
 $git_status\
 $fill\
@@ -70,14 +70,14 @@ symbol = ' '
 
 [rust]
 style = 'orange'
-symbol = ' '
+symbol = '🦀 '
 
 [ruby]
 style = 'blue'
 symbol = ' '
 
 [package]
-symbol = '󰏗 '
+symbol = '📦 '
 
 [aws]
 symbol = ' '
@@ -85,7 +85,7 @@ style = 'yellow'
 format = '[$symbol($profile )(\[$duration\] )]($style)'
 
 [docker_context]
-symbol = ' '
+symbol = '🐳 '
 style = 'fg:#06969A'
 format = '[$symbol]($style) $path'
 detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
