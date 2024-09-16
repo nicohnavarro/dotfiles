@@ -2,15 +2,25 @@ return {
   "nvim-lualine/lualine.nvim",
   config = function()
     -- For gruvbox theme
+    -- local colors = {
+    --   blue = "#83a598",
+    --   green = "#b8bb26",
+    --   violet = "#d3869b",
+    --   yellow = "#fabd2f",
+    --   red = "#fb4934",
+    --   fg = "#ebdbb2",
+    --   bg = "#282828",
+    --   inactive_bg = "#3c3836",
+    -- }
     local colors = {
-      blue = "#83a598",
-      green = "#b8bb26",
-      violet = "#d3869b",
-      yellow = "#fabd2f",
-      red = "#fb4934",
-      fg = "#ebdbb2",
-      bg = "#282828",
-      inactive_bg = "#3c3836",
+      blue = "#65D1FF",
+      green = "#3EFFDC",
+      violet = "#FF61EF",
+      yellow = "#FFDA7B",
+      red = "#FF4A4A",
+      fg = "#c3ccdc",
+      bg = "#112638",
+      inactive_bg = "#2c3043",
     }
 
     local my_lualine_theme = {
