@@ -1,51 +1,39 @@
 return {
   "nvim-lualine/lualine.nvim",
   config = function()
-    -- For gruvbox theme
-    -- local colors = {
-    --   blue = "#83a598",
-    --   green = "#b8bb26",
-    --   violet = "#d3869b",
-    --   yellow = "#fabd2f",
-    --   red = "#fb4934",
-    --   fg = "#ebdbb2",
-    --   bg = "#282828",
-    --   inactive_bg = "#3c3836",
-    -- }
     local colors = {
-      blue = "#65D1FF",
-      green = "#3EFFDC",
-      violet = "#FF61EF",
-      yellow = "#FFDA7B",
-      red = "#FF4A4A",
-      fg = "#c3ccdc",
-      bg = "#112638",
-      inactive_bg = "#2c3043",
+      blue = "#539bf5", -- A darker blue shade
+      green = "#3fb950", -- A green inspired by GitHub Dark
+      violet = "#d2a8ff", -- A subtle violet
+      yellow = "#e3b341", -- A darker yellow shade
+      red = "#f85149", -- A red from GitHub Dark
+      fg = "#c9d1d9", -- Light foreground color
+      bg = "#0d1117", -- Very dark background
+      inactive_bg = "#161b22", -- Slightly lighter dark for inactive elements
     }
-
     local my_lualine_theme = {
       normal = {
-        a = { bg = colors.blue, fg = colors.bg, gui = "bold" },
+        a = { bg = colors.blue, fg = colors.fg, gui = "bold" },
         b = { bg = colors.bg, fg = colors.fg },
         c = { bg = colors.bg, fg = colors.fg },
       },
       insert = {
-        a = { bg = colors.green, fg = colors.bg, gui = "bold" },
+        a = { bg = colors.green, fg = colors.fg, gui = "bold" },
         b = { bg = colors.bg, fg = colors.fg },
         c = { bg = colors.bg, fg = colors.fg },
       },
       visual = {
-        a = { bg = colors.violet, fg = colors.bg, gui = "bold" },
+        a = { bg = colors.violet, fg = colors.fg, gui = "bold" },
         b = { bg = colors.bg, fg = colors.fg },
         c = { bg = colors.bg, fg = colors.fg },
       },
       command = {
-        a = { bg = colors.yellow, fg = colors.bg, gui = "bold" },
+        a = { bg = colors.yellow, fg = colors.fg, gui = "bold" },
         b = { bg = colors.bg, fg = colors.fg },
         c = { bg = colors.bg, fg = colors.fg },
       },
       replace = {
-        a = { bg = colors.red, fg = colors.bg, gui = "bold" },
+        a = { bg = colors.red, fg = colors.fg, gui = "bold" },
         b = { bg = colors.bg, fg = colors.fg },
         c = { bg = colors.bg, fg = colors.fg },
       },
