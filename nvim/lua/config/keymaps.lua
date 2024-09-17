@@ -11,10 +11,10 @@ keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split windows horizontally" })
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
 
 -- Resize windows
-keymap.set("n", "<Up>", ":resize -2<CR>", { desc = "Make split taller" })
-keymap.set("n", "<Down>", ":resize +2<CR>", { desc = "Make split shorter" })
-keymap.set("n", "<Right>", ":vertical resize -2<CR>", { desc = "Make split narrower" })
-keymap.set("n", "<Left>", ":vertical resize +2<CR>", { desc = "Make split wider" })
+keymap.set("n", "<leader><Up>", ":resize -2<CR>", { desc = "Make split taller" })
+keymap.set("n", "<leader><Down>", ":resize +2<CR>", { desc = "Make split shorter" })
+keymap.set("n", "<Left>", ":vertical resize -2<CR>", { desc = "Make split narrower" })
+keymap.set("n", "<Right>", ":vertical resize +2<CR>", { desc = "Make split wider" })
 
 -- Navigate between windows
 keymap.set("n", "<C-k>", ":wincmd k<CR>", { desc = "Navigate to up split" })
