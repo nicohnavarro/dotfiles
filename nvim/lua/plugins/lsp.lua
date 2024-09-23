@@ -163,7 +163,6 @@ return {
       --
       -- But for many setups, the LSP (`tsserver`) will work just fine
       ts_ls = {},
-      rust_analyzer = {},
       ruff = {},
       pylsp = {
         settings = {
