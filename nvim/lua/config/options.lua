@@ -5,13 +5,14 @@ local g = vim.g -- global variables
 local opt = vim.opt -- global/buffer/windows-scoped options
 vim.cmd("let g:netrw_liststyle = 3")
 
-opt.relativenumber = true
-opt.number = true
-
 opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
+
+opt.relativenumber = true
+opt.number = true
+
 
 opt.wrap = false
 

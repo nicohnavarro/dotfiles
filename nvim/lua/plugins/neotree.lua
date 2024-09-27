@@ -28,10 +28,22 @@ return {
   },
   config = function()
     -- If you want icons for diagnostic errors, you'll need to define them somewhere:
-    vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
-    vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
-    vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
-    vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
+    vim.fn.sign_define(
+      "DiagnosticSignError",
+      { text = " ", texthl = "DiagnosticSignError" }
+    )
+    vim.fn.sign_define(
+      "DiagnosticSignWarn",
+      { text = " ", texthl = "DiagnosticSignWarn" }
+    )
+    vim.fn.sign_define(
+      "DiagnosticSignInfo",
+      { text = " ", texthl = "DiagnosticSignInfo" }
+    )
+    vim.fn.sign_define(
+      "DiagnosticSignHint",
+      { text = "󰌵", texthl = "DiagnosticSignHint" }
+    )
 
     require("neo-tree").setup({
       close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
@@ -87,17 +99,16 @@ return {
         },
         git_status = {
           symbols = {
-            -- Change type
-            added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-            modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
-            deleted = "✖", -- this can only be used in the git_status source
-            renamed = "󰁕", -- this can only be used in the git_status source
+            added = "", -- A check mark with a plus sign
+            modified = "", -- A pencil icon indicating modification
+            deleted = "", -- A trash can symbol for deletion
+            renamed = "", -- A right arrow, indicating a name change
             -- Status type
-            untracked = "",
-            ignored = "",
-            unstaged = "󰄱",
-            staged = "",
-            conflict = "",
+            untracked = "?", -- A question mark in a circle, highlighting untracked files
+            ignored = "", -- A folder icon indicating ignored files
+            unstaged = "", -- An exclamation mark inside a triangle, signaling unstaged changes
+            staged = "", -- A bold checkmark to indicate staged changes
+            conflict = "", -- A merge icon highlighting conflicts
           },
         },
         -- If you don't want to use these columns, you can set `enabled = false` for each of them individually
@@ -243,7 +254,11 @@ return {
             ["<c-x>"] = "clear_filter",
             ["[g"] = "prev_git_modified",
             ["]g"] = "next_git_modified",
-            ["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
+            ["o"] = {
+              "show_help",
+              nowait = false,
+              config = { title = "Order by", prefix_key = "o" },
+            },
             ["oc"] = { "order_by_created", nowait = false },
             ["od"] = { "order_by_diagnostics", nowait = false },
             ["og"] = { "order_by_git_status", nowait = false },
@@ -275,7 +290,11 @@ return {
             ["bd"] = "buffer_delete",
             ["<bs>"] = "navigate_up",
             ["."] = "set_root",
-            ["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
+            ["o"] = {
+              "show_help",
+              nowait = false,
+              config = { title = "Order by", prefix_key = "o" },
+            },
             ["oc"] = { "order_by_created", nowait = false },
             ["od"] = { "order_by_diagnostics", nowait = false },
             ["om"] = { "order_by_modified", nowait = false },
@@ -296,7 +315,11 @@ return {
             ["gc"] = "git_commit",
             ["gp"] = "git_push",
             ["gg"] = "git_commit_and_push",
-            ["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
+            ["o"] = {
+              "show_help",
+              nowait = false,
+              config = { title = "Order by", prefix_key = "o" },
+            },
             ["oc"] = { "order_by_created", nowait = false },
             ["od"] = { "order_by_diagnostics", nowait = false },
             ["om"] = { "order_by_modified", nowait = false },
@@ -309,7 +332,17 @@ return {
     })
 
     vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
-    vim.keymap.set("n", "<leader>e", ":Neotree toggle position=left<CR>", { noremap = true, silent = true }) -- focus file explorer
-    vim.keymap.set("n", "<leader>ngs", ":Neotree float git_status<CR>", { noremap = true, silent = true }) -- open git status window
+    vim.keymap.set(
+      "n",
+      "<leader>e",
+      ":Neotree toggle position=left<CR>",
+      { noremap = true, silent = true }
+    ) -- focus file explorer
+    vim.keymap.set(
+      "n",
+      "<leader>ngs",
+      ":Neotree float git_status<CR>",
+      { noremap = true, silent = true }
+    ) -- open git status window
   end,
 }
