@@ -18,7 +18,7 @@ $line_break\
 $character"""
 
 add_newline = true
-palette = "nord"
+palette = "github_dark_dimmed"
 
 [directory]
 style = 'bold fg:dark_blue'
@@ -57,7 +57,7 @@ format = '[$symbol($version )]($style)'
 symbol = ' '
 
 [nodejs]
-style = 'blue'
+style = 'green'
 symbol = ' '
 
 [golang]
@@ -127,3 +127,16 @@ yellow='#e5c07b'
 gray='#828997'
 white ='#abb2bf'
 black='#2c323c'
+
+[palettes.github_dark_dimmed]
+dark_blue = '#79b8ff'
+blue = '#539bf5'
+red = '#f97583'
+green = '#85e89d'
+purple = '#b392f0'
+cyan = '#76e3ea'
+orange = '#d18616'
+yellow = '#ffea7f'
+gray = '#6a737d'
+white = '#d1d5da'
+black = '#24292e'
