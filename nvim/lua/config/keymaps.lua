@@ -70,7 +70,7 @@ keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open Diag" })
 keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "IDK" })
 
 -- Buffers
-vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts)
-vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts)
-vim.keymap.set("n", "<leader>x", ":Bdelete!<CR>", opts) -- close buffer
-vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", opts) -- new buffer
+vim.keymap.set("n", "<Tab>", ":bnext<CR>", { desc = "Toogle Buffer" })
+vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", { desc = "Toogle Buffer" })
+vim.keymap.set("n", "<leader>x", ":Bdelete!<CR>", { desc = "Close Buffer" })
+vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", { desc = "New Buffer" })

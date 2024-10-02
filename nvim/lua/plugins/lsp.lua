@@ -137,7 +137,7 @@ return {
     -- Define LSP servers with custom configurations
     local servers = {
       ts_ls = {},
-      ruff = {},
+      emmet_ls = {},
       pylsp = {
         settings = {
           pylsp = {
