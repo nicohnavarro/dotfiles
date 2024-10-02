@@ -6,9 +6,7 @@ return {
     "hrsh7th/cmp-path", -- source for file system paths
     {
       "L3MON4D3/LuaSnip",
-      -- follow latest release.
       version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-      -- install jsregexp (optional!).
       build = "make install_jsregexp",
     },
     "saadparwaiz1/cmp_luasnip", -- for autocompletion
@@ -21,9 +19,6 @@ return {
     local luasnip = require("luasnip")
 
     local lspkind = require("lspkind")
-
-    -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
-    require("luasnip.loaders.from_vscode").lazy_load()
 
     cmp.setup({
       completion = {
@@ -56,7 +51,6 @@ return {
         documentation = cmp.config.window.bordered(),
       },
 
-      -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
         format = lspkind.cmp_format({
           maxwidth = 50,
