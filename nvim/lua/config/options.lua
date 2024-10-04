@@ -12,8 +12,6 @@ opt.autoindent = true
 
 opt.relativenumber = true
 opt.number = true
-
-
 opt.wrap = false
 
 opt.ignorecase = true
