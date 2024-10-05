@@ -2,14 +2,14 @@ return {
   "nvim-lualine/lualine.nvim",
   config = function()
     local colors = {
-      blue = "#539bf5", -- A darker blue shade
-      green = "#3fb950", -- A green inspired by GitHub Dark
-      violet = "#d2a8ff", -- A subtle violet
-      yellow = "#e3b341", -- A darker yellow shade
-      red = "#f85149", -- A red from GitHub Dark
-      fg = "#c9d1d9", -- Light foreground color
-      bg = "#0d1117", -- Very dark background
-      inactive_bg = "#161b22", -- Slightly lighter dark for inactive elements
+      blue = "#81A1C1", -- Nord blue, ideal for keywords or accent elements
+      green = "#A3BE8C", -- Nord green, perfect for strings or success indicators
+      violet = "#B48EAD", -- Nord violet, suitable for types or subtle highlights
+      yellow = "#EBCB8B", -- Nord yellow, great for warnings, constants, or standout information
+      red = "#BF616A", -- Nord red, used for errors, alerts, or critical states
+      fg = "#D8DEE9", -- Light foreground, used for main text and content
+      bg = "#2E3440", -- Dark background, creating contrast with text elements
+      inactive_bg = "#3B4252", -- Slightly lighter dark, for inactive states or secondary backgrounds
     }
     local my_lualine_theme = {
       normal = {
