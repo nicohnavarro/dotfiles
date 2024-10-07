@@ -1,16 +1,12 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-
 vim.g.mapleader = " "
 local keymap = vim.keymap
 
-keymap.set("i", "jk", "<ESC>", { desc = "Exit Insert Mode" })
+keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
 -- Splits window
-keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close urrent split" })
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split windows verticaly" })
+keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
+keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split windows vertically" })
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split windows horizontally" })
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
 
@@ -46,22 +42,5 @@ keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "IDK" })
 -- Buffers
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", { desc = "Toogle Buffer" })
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", { desc = "Toogle Buffer" })
-
--- Delete window navigation keymaps
-vim.keymap.del("n", "<C-h>")
-vim.keymap.del("n", "<C-j>")
-vim.keymap.del("n", "<C-k>")
-vim.keymap.del("n", "<C-l>")
-
--- Delete window resizing keymaps
-vim.keymap.del("n", "<C-Up>")
-vim.keymap.del("n", "<C-Down>")
-vim.keymap.del("n", "<C-Left>")
-vim.keymap.del("n", "<C-Right>")
-
--- Tmux navigation key mappings
-vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = "Navigate to left Tmux pane" })
-vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Navigate to lower Tmux pane" })
-vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Navigate to upper Tmux pane" })
-vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Navigate to right Tmux pane" })
-vim.keymap.set("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<cr>", { desc = "Navigate to previous Tmux pane" })
+vim.keymap.set("n", "<leader>x", ":Bdelete!<CR>", { desc = "Close Buffer" })
+vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", { desc = "New Buffer" })
