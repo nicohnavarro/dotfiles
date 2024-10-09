@@ -24,18 +24,20 @@ palette = "nord"
 style = 'bold fg:dark_blue'
 format = '[$path ]($style)'
 truncation_length = 3
-truncation_symbol = '…/'
+truncation_symbol = '/'
 truncate_to_repo = false
 
 [directory.substitutions]
 'Documents' = '󰈙'
-'Downloads' = ' '
+'Downloads' = ''
 'Music' = ' '
-'Pictures' = ' '
+'Pictures' = ''
+'Workspace' = ''
+'node_modules' = ''
 
 [git_branch]
 style = 'fg:green'
-symbol = ' '
+symbol = ' '
 format = '[on](white) [$symbol$branch ]($style)'
 
 [git_status]
@@ -70,14 +72,14 @@ symbol = ' '
 
 [rust]
 style = 'orange'
-symbol = '🦀 '
+symbol = ''
 
 [ruby]
-style = 'blue'
+style = 'red'
 symbol = ' '
 
 [package]
-symbol = '📦 '
+symbol = ' '
 
 [aws]
 symbol = ' '
@@ -85,7 +87,7 @@ style = 'yellow'
 format = '[$symbol($profile )(\[$duration\] )]($style)'
 
 [docker_context]
-symbol = '🐳 '
+symbol = ' '
 style = 'fg:#06969A'
 format = '[$symbol]($style) $path'
 detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
