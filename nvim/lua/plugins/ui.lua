@@ -76,7 +76,8 @@ return {
         },
         ---@param opts bufferline.IconFetcherOpts
         get_element_icon = function(opts)
-          return LazyVim.config.icons.ft[opts.filetype]
+          -- return LazyVim.config.icons.ft[opts.filetype]
+          return " "
         end,
       },
     },
@@ -118,7 +119,7 @@ return {
 
       local opts = {
         options = {
-          theme = "auto",
+          theme = "github-theme",
           globalstatus = vim.o.laststatus == 3,
           disabled_filetypes = { statusline = { "dashboard", "ministarter" } },
         },
