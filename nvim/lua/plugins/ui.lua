@@ -113,6 +113,12 @@ return {
       local lualine_require = require("lualine_require")
       lualine_require.require = require
 
+      local mode = {
+        "mode",
+        fmt = function(str)
+          return " " .. str:sub(1, 1)
+        end,
+      }
       local icons = LazyVim.config.icons
 
       vim.o.laststatus = vim.g.lualine_laststatus
@@ -124,7 +130,7 @@ return {
           disabled_filetypes = { statusline = { "dashboard", "ministarter" } },
         },
         sections = {
-          lualine_a = { "mode" },
+          lualine_a = { mode },
           lualine_b = { "branch" },
 
           lualine_c = {
