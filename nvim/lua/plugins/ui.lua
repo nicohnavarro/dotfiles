@@ -145,7 +145,8 @@ return {
               },
             },
             { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-            { LazyVim.lualine.pretty_path() },
+            { "filename" },
+            -- { LazyVim.lualine.pretty_path() },
           },
           lualine_x = {
             -- stylua: ignore
@@ -192,14 +193,15 @@ return {
             },
           },
           lualine_y = {
-            { "progress", separator = " ", padding = { left = 1, right = 0 } },
-            { "location", padding = { left = 0, right = 1 } },
+            -- { "progress", separator = " ", padding = { left = 1, right = 0 } },
+            { "location", padding = { left = 1, right = 1 } },
           },
-          -- lualine_z = {
-          --   function()
-          --     return " " .. os.date("%R")
-          --   end,
-          -- },
+          lualine_z = {
+            function()
+              -- return " " .. os.date("%R")
+              return ""
+            end,
+          },
         },
         extensions = { "neo-tree", "lazy" },
       }
