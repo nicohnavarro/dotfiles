@@ -18,7 +18,8 @@ $line_break\
 $character"""
 
 add_newline = true
-palette = 'github_dark_dimmed'
+# palette = 'github_dark_dimmed'
+palette = 'nord'
 
 [directory]
 style = 'bold fg:dark_blue'
