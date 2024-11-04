@@ -48,7 +48,7 @@ format = '([$all_status$ahead_behind]($style) )'
 symbol = ' '
 
 [python]
-style = 'teal'
+style = 'yellow'
 symbol = ' '
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 pyenv_version_name = true
