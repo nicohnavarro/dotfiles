@@ -1,6 +1,0 @@
-theme: github_dark
-response:
-  prettify_json: true
-heading:
-  visible: true
-  show_host: false

@@ -91,6 +91,7 @@ alias ltree="eza --tree --level=2  --icons --git"
 alias ll="ls -la"
 alias dev="tmux a -t dev"
 alias work="tmux a -t work"
+alias pip="pip3"
 ### FZF ###
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

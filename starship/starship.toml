@@ -1,5 +1,5 @@
 format = """
- $directory\
+🧬 $directory\
 $git_branch\
 $git_status\
 $fill\
@@ -24,15 +24,15 @@ palette = 'github_dark_dimmed'
 style = 'bold fg:dark_blue'
 format = '[$path ]($style)'
 truncation_length = 1
-truncation_symbol = '/'
+truncation_symbol = '.../'
 truncate_to_repo = false
 
 [directory.substitutions]
-'Documents' = '󰈙'
+'Documents' = ''
 'Downloads' = ''
 'Music' = ' '
 'Pictures' = ''
-'Workspace' = '󰲋 '
+'Workspace' = ''
 'node_modules' = ''
 
 [git_branch]
