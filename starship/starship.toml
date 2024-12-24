@@ -1,5 +1,5 @@
 format = """
-🧬 $directory\
+$directory\
 $git_branch\
 $git_status\
 $fill\
@@ -18,13 +18,13 @@ $line_break\
 $character"""
 
 add_newline = true
-palette = 'github_dark_dimmed'
+palette = 'gruvbox_dark'
 
 [directory]
 style = 'bold fg:dark_blue'
 format = '[$path ]($style)'
 truncation_length = 1
-truncation_symbol = '.../'
+truncation_symbol = '../'
 truncate_to_repo = false
 
 [directory.substitutions]
@@ -115,44 +115,3 @@ color_orange = '#d65d0e'
 color_purple = '#b16286'
 color_red = '#cc241d'
 color_yellow = '#d79921'
-
-[palettes.nord]
-dark_blue = '#5E81AC'
-blue = '#81A1C1'
-teal = '#88C0D0'
-red = '#BF616A'
-orange = '#D08770'
-green = '#A3BE8C'
-yellow = '#EBCB8B'
-purple = '#B48EAD'
-gray = '#434C5E'
-black = '#2E3440'
-white='#D8DEE9'
-
-[palettes.onedark]
-dark_blue='#61afef'
-blue='#56b6c2'
-red='#e06c75'
-green='#98c379'
-purple='#c678dd'
-cyan='#56b6c2'
-orange='#be5046'
-yellow='#e5c07b'
-gray='#828997'
-white ='#abb2bf'
-black='#2c323c'
-
-[palettes.github_dark_dimmed]
-dark_blue = '#79b8ff'
-blue = '#539bf5'
-red = '#f97583'
-green = '#85e89d'
-purple = '#b392f0'
-cyan = '#76e3ea'
-orange = '#d18616'
-yellow = '#ffea7f'
-gray = '#6a737d'
-white = '#d1d5da'
-black = '#24292e'
-
-
