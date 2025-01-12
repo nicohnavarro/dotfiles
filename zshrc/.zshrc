@@ -17,7 +17,7 @@ alias la=tree
 alias cat=bat
 
 # Git
-alias lg="lazygit"
+alias gg="lazygit"
 alias gc="git commit -m"
 alias gca="git commit -a -m"
 alias gp="git push origin HEAD"
