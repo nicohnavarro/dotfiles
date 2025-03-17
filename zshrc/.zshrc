@@ -80,7 +80,7 @@ alias cl='clear'
 
 # HTTP requests with xh!
 alias http="xh"
-
+alias clear='clear && printf "\e[3J"'
 # VI Mode!!!
 bindkey jj vi-cmd-mode
 
