@@ -1,5 +1,6 @@
 format = """
 $username\
+$hostname\
 $directory\
 $git_branch\
 $git_status\
@@ -11,12 +12,18 @@ $golang\
 $haskell\
 $rust\
 $ruby\
+$java\
+$php\
 $aws\
 $docker_context\
+$time\
 $jobs\
 $cmd_duration\
 $line_break\
 $character"""
+
+# Increase command timeout to prevent Node.js timeout warnings
+command_timeout = 1000
 
 [username]
 style_user = "green bold"

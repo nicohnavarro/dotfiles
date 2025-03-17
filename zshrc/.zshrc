@@ -1,20 +1,74 @@
-# Path to your oh-my-zsh installation.
-# Reevaluate the prompt string each time it's displaying a prompt
-setopt prompt_subst
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-autoload bashcompinit && bashcompinit
-autoload -Uz compinit
-compinit
+# =============================================================================
+# ZSH Configuration - Improved
+# =============================================================================
 
+# --------------------------------
+# Core ZSH Settings
+# --------------------------------
+setopt prompt_subst
+setopt auto_cd                 # Auto change directory without cd
+setopt auto_pushd              # Push the current directory onto the stack
+setopt pushd_ignore_dups       # Don't push duplicates onto the stack
+setopt extended_glob           # Extended globbing
+setopt hist_ignore_all_dups    # Don't save duplicates in history
+setopt hist_ignore_space       # Don't save commands starting with space
+setopt share_history           # Share history between sessions
+setopt interactive_comments    # Allow comments in interactive shells
+
+# History configuration
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+
+# Completion system
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
+
+autoload -Uz compinit bashcompinit
+compinit
+bashcompinit
+
+# --------------------------------
+# Key Bindings
+# --------------------------------
+# Vi mode
+bindkey -v
+bindkey jj vi-cmd-mode
+export KEYTIMEOUT=20  # Reduce delay when switching modes
+
+# Custom key bindings
 bindkey '^w' autosuggest-execute
 bindkey '^e' autosuggest-accept
 bindkey '^u' autosuggest-toggle
 bindkey '^L' vi-forward-word
 bindkey '^k' up-line-or-search
 bindkey '^j' down-line-or-search
+bindkey '^r' atuin-search  # Enhanced history search with atuin
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+bindkey '^[[1;5C' forward-word  # Ctrl+right
+bindkey '^[[1;5D' backward-word # Ctrl+left
 
-alias la=tree
-alias cat=bat
+# --------------------------------
+# Aliases
+# --------------------------------
+# General
+alias cat="bat"
+alias cl="clear && printf '\e[3J\e[H\e[2J' && clear"
+alias ls="lsd"
+alias ll="ls -la"
+alias la="tree"
+alias grep="grep --color=auto"
+alias mkdir="mkdir -p"
+alias df="df -h"
+alias du="du -h"
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -i"
 
 # Git
 alias gg="lazygit"
@@ -33,6 +87,7 @@ alias ga='git add -p'
 alias gcoall='git checkout -- .'
 alias gr='git remote'
 alias gre='git reset'
+alias gf='git fetch --all'
 
 # Docker
 alias dco="docker compose"
@@ -40,93 +95,199 @@ alias dps="docker ps"
 alias dpa="docker ps -a"
 alias dl="docker ps -l -q"
 alias dx="docker exec -it"
+alias dstop='docker stop $(docker ps -q 2>/dev/null) 2>/dev/null'
+alias dprune="docker system prune -af"
 
-# Dirs
+# Directory navigation
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
-# GO
-export GOPATH='/Users/nicohnavarro/go'
+# Eza (modern ls replacement)
+alias l="eza -l --icons --git -a"
+alias lt="eza --tree --level=2 --long --icons --git"
+alias ltree="eza --tree --level=2 --icons --git"
+alias lm="eza -l --icons --git -a --sort=modified"
+alias lsize="eza -l --icons --git -a --sort=size"
 
-# VIM
-alias v="/Users/nicohnavarro/.nix-profile/bin/nvim"
+# Tmux
+alias dev="tmux a -t dev || tmux new -s dev"
+alias work="tmux a -t work || tmux new -s work"
+
+# HTTP requests
+alias http="xh"
 
 # Nmap
 alias nm="nmap -sC -sV -oN nmap"
-alias ls="lsd"
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/omer/.vimpkg/bin:${GOPATH}/bin:/Users/nicohnavarro/.cargo/bin
 
-alias cl='clear'
+# Python
+alias pip="pip3"
+alias python="python3"
+alias venv="python -m venv .venv && source .venv/bin/activate"
+alias activate="source .venv/bin/activate 2>/dev/null || source venv/bin/activate 2>/dev/null || echo 'No virtual environment found'"
 
-# K8S
+# VIM
+alias v="/Users/nicohnavarro/.nix-profile/bin/nvim"
+alias vim="nvim"
+
+# --------------------------------
+# Environment Variables
+# --------------------------------
+# Language
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# Editor
+export EDITOR=/opt/homebrew/bin/nvim
+export VISUAL=/opt/homebrew/bin/nvim
+
+# GO
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+
+# FZF
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --preview 'bat --color=always {}'"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --level=1 --icons --git {}'"
+
+# Starship
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+
+# --------------------------------
+# Path Configuration
+# --------------------------------
+# Ensure path arrays don't contain duplicates
+typeset -U path PATH
+
+# Set path components
+path=(
+  /opt/homebrew/bin
+  /usr/local/bin
+  /usr/bin
+  /bin
+  /usr/sbin
+  /sbin
+  $HOME/.local/bin
+  $GOPATH/bin
+  $HOME/.cargo/bin
+  $PNPM_HOME
+  $path
+)
+
+export PATH
+
+# --------------------------------
+# Functions
+# --------------------------------
+# Enhanced navigation
+cx() { cd "$@" && l; }
+fcd() { cd "$(fd --type d --hidden --exclude .git | fzf)" && l; }
+f() { echo "$(fd --type f --hidden --exclude .git | fzf)" | pbcopy; }
+fv() { nvim "$(fd --type f --hidden --exclude .git | fzf)"; }
+
+# Create and enter directory
+mkcd() { mkdir -p "$1" && cd "$1"; }
+
+# Extract various archive formats
+extract() {
+  if [ -f $1 ]; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1     ;;
+      *.tar.gz)    tar xzf $1     ;;
+      *.bz2)       bunzip2 $1     ;;
+      *.rar)       unrar e $1     ;;
+      *.gz)        gunzip $1      ;;
+      *.tar)       tar xf $1      ;;
+      *.tbz2)      tar xjf $1     ;;
+      *.tgz)       tar xzf $1     ;;
+      *.zip)       unzip $1       ;;
+      *.Z)         uncompress $1  ;;
+      *.7z)        7z x $1        ;;
+      *)           echo "'$1' cannot be extracted via extract()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+# Git clone and cd into it
+gclone() {
+  git clone "$1" && cd "$(basename "$1" .git)"
+}
+
+# --------------------------------
+# Plugin Initialization
+# --------------------------------
+# Load syntax highlighting and autosuggestions
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Initialize tools
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(atuin init zsh)"
+eval "$(direnv hook zsh)"
+
+# NVM (Node Version Manager)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # This loads nvm without using it immediately
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# PNPM
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# --------------------------------
+# Kubernetes (Uncomment when needed)
+# --------------------------------
 #export KUBECONFIG=~/.kube/config
 #alias k="kubectl"
 #alias ka="kubectl apply -f"
 #alias kg="kubectl get"
 #alias kd="kubectl describe"
 #alias kdel="kubectl delete"
-#alias kl="kubectl logs"
+#alias kl="kubectl logs -f"
 #alias kgpo="kubectl get pod"
 #alias kgd="kubectl get deployments"
 #alias kc="kubectx"
 #alias kns="kubens"
-#alias kl="kubectl logs -f"
 #alias ke="kubectl exec -it"
 #alias kcns='kubectl config set-context --current --namespace'
-#alias podname=''
 
-# HTTP requests with xh!
-alias http="xh"
-alias clear='clear && printf "\e[3J"'
-# VI Mode!!!
-bindkey jj vi-cmd-mode
+# --------------------------------
+# Performance Optimization
+# --------------------------------
+# Lazy load nvm for faster shell startup
+nvm() {
+  unset -f nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  nvm "$@"
+}
 
-# Eza
-alias l="eza -l --icons --git -a"
-alias lt="eza --tree --level=2 --long --icons --git"
-alias ltree="eza --tree --level=2  --icons --git"
-alias ll="ls -la"
-alias dev="tmux a -t dev"
-alias work="tmux a -t work"
-alias pip="pip3"
-### FZF ###
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+node() {
+  unset -f node
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  node "$@"
+}
 
-export PATH=/opt/homebrew/bin:$PATH
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
-eval "$(starship init zsh)"
+npm() {
+  unset -f npm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  npm "$@"
+}
 
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
-export EDITOR=/opt/homebrew/bin/nvim
-
-
-# navigation
-cx() { cd "$@" && l; }
-fcd() { cd "$(find . -type d -not -path '*/.*' | fzf)" && l; }
-f() { echo "$(find . -type f -not -path '*/.*' | fzf)" | pbcopy }
-fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
-
-eval "$(zoxide init zsh)"
-eval "$(atuin init zsh)"
-eval "$(direnv hook zsh)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# pnpm
-export PNPM_HOME="/Users/nicohnavarro/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-export PATH="/Users/nicohnavarro/.local/bin:$PATH"
+# --------------------------------
+# Custom Local Configuration
+# --------------------------------
+# Source local configuration if it exists
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
