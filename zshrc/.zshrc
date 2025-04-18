@@ -291,3 +291,12 @@ npm() {
 # --------------------------------
 # Source local configuration if it exists
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+# bun completions
+[ -s "/Users/nicohnavarro/.bun/_bun" ] && source "/Users/nicohnavarro/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
